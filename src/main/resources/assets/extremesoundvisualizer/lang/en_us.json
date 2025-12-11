@@ -5,5 +5,6 @@
   "key.extremesoundvisualizer.toggle": "Toggle Sound Visualizer",
   "key.categories.extremesoundvisualizer": "Extreme Sound Visualizer",
   "message.extremesoundvisualizer.enabled": "Sound Visualizer Enabled",
-  "message.extremesoundvisualizer.disabled": "Sound Visualizer Disabled"
+  "message.extremesoundvisualizer.disabled": "Sound Visualizer Disabled",
+  "extremesoundvisualizer.configuration.render.renderThroughWalls": "Render Through Walls"
 }
