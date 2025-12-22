@@ -1,4 +1,4 @@
-package com.leclowndu93150.extreme_sound_visualizer.client;
+package com.leclowndu93150.synesthesia.client;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.resources.ResourceLocation;

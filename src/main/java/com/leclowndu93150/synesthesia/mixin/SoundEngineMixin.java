@@ -1,7 +1,7 @@
-package com.leclowndu93150.extreme_sound_visualizer.mixin;
+package com.leclowndu93150.synesthesia.mixin;
 
-import com.leclowndu93150.extreme_sound_visualizer.client.SoundVisualizerData;
-import com.leclowndu93150.extreme_sound_visualizer.client.VisualizerState;
+import com.leclowndu93150.synesthesia.client.SoundVisualizerData;
+import com.leclowndu93150.synesthesia.client.VisualizerState;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.multiplayer.ClientLevel;
 import net.minecraft.client.resources.sounds.SoundInstance;
@@ -24,10 +24,10 @@ import java.util.List;
 public abstract class SoundEngineMixin {
 
     @Unique
-    private static final double ESV_MAX_SOUND_DISTANCE = 16.0;
+    private static final double SYN_MAX_SOUND_DISTANCE = 16.0;
 
     @Inject(method = "play", at = @At("HEAD"))
-    private void esv_onSoundPlay(SoundInstance sound, CallbackInfo ci) {
+    private void syn_onSoundPlay(SoundInstance sound, CallbackInfo ci) {
         if (!VisualizerState.isEnabled()) {
             return;
         }
@@ -59,23 +59,23 @@ public abstract class SoundEngineMixin {
             }
         } catch (Exception ignored) {
         }
-        double maxDistance = ESV_MAX_SOUND_DISTANCE * volume;
+        double maxDistance = SYN_MAX_SOUND_DISTANCE * volume;
         if (distance > maxDistance) {
             return;
         }
 
-        Entity trackedEntity = esv_findNearbyEntity(x, y, z);
+        Entity trackedEntity = syn_findNearbyEntity(x, y, z);
         BlockPos trackedBlock = null;
 
         if (trackedEntity == null) {
-            trackedBlock = esv_findSoundBlock(x, y, z);
+            trackedBlock = syn_findSoundBlock(x, y, z);
         }
 
         SoundVisualizerData.addSound(sound.getLocation(), x, y, z, trackedEntity, trackedBlock);
     }
 
     @Unique
-    private Entity esv_findNearbyEntity(double x, double y, double z) {
+    private Entity syn_findNearbyEntity(double x, double y, double z) {
         Minecraft mc = Minecraft.getInstance();
         ClientLevel level = mc.level;
         if (level == null) {
@@ -100,7 +100,7 @@ public abstract class SoundEngineMixin {
     }
 
     @Unique
-    private BlockPos esv_findSoundBlock(double x, double y, double z) {
+    private BlockPos syn_findSoundBlock(double x, double y, double z) {
         Minecraft mc = Minecraft.getInstance();
         ClientLevel level = mc.level;
         if (level == null) {

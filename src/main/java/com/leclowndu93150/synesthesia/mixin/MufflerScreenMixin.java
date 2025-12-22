@@ -1,7 +1,7 @@
-package com.leclowndu93150.extreme_sound_visualizer.mixin;
+package com.leclowndu93150.synesthesia.mixin;
 
-import com.leclowndu93150.extreme_sound_visualizer.client.VisualizerButton;
-import com.leclowndu93150.extreme_sound_visualizer.client.VisualizerState;
+import com.leclowndu93150.synesthesia.client.VisualizerButton;
+import com.leclowndu93150.synesthesia.client.VisualizerState;
 import com.leobeliik.extremesoundmuffler.gui.MufflerScreen;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.gui.components.EditBox;
@@ -21,14 +21,14 @@ public abstract class MufflerScreenMixin extends Screen {
     private EditBox searchBar;
 
     @Unique
-    private VisualizerButton esv_visualizerButton;
+    private VisualizerButton syn_visualizerButton;
 
     protected MufflerScreenMixin(Component title) {
         super(title);
     }
 
     @Inject(method = "addButtons", at = @At("TAIL"), remap = false)
-    private void esv_addVisualizerButton(CallbackInfo ci) {
+    private void syn_addVisualizerButton(CallbackInfo ci) {
         int guiX = (this.width - 256) / 2;
         int guiY = (this.height - 202) / 2;
 
@@ -39,17 +39,17 @@ public abstract class MufflerScreenMixin extends Screen {
             searchBar.setWidth(103);
         }
 
-        esv_visualizerButton = new VisualizerButton(buttonX, buttonY, button -> {
+        syn_visualizerButton = new VisualizerButton(buttonX, buttonY, button -> {
             VisualizerState.toggle();
         });
 
-        this.addRenderableWidget(esv_visualizerButton);
+        this.addRenderableWidget(syn_visualizerButton);
     }
 
     @Inject(method = "render", at = @At("TAIL"), remap = false)
-    private void esv_renderTooltip(GuiGraphics guiGraphics, int mouseX, int mouseY, float partialTicks, CallbackInfo ci) {
-        if (esv_visualizerButton != null && esv_visualizerButton.isHovered()) {
-            guiGraphics.renderTooltip(this.font, esv_visualizerButton.getTooltipText(), mouseX, mouseY);
+    private void syn_renderTooltip(GuiGraphics guiGraphics, int mouseX, int mouseY, float partialTicks, CallbackInfo ci) {
+        if (syn_visualizerButton != null && syn_visualizerButton.isHovered()) {
+            guiGraphics.renderTooltip(this.font, syn_visualizerButton.getTooltipText(), mouseX, mouseY);
         }
     }
 }

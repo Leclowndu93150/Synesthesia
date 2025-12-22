@@ -1,4 +1,4 @@
-package com.leclowndu93150.extreme_sound_visualizer.client;
+package com.leclowndu93150.synesthesia.client;
 
 import net.neoforged.neoforge.common.ModConfigSpec;
 
@@ -10,7 +10,7 @@ public class ClientConfig {
     static {
         ModConfigSpec.Builder builder = new ModConfigSpec.Builder();
 
-        builder.comment("Extreme Sound Visualizer Client Configuration");
+        builder.comment("Synesthesia: Sound Visualizer Client Configuration");
 
         RENDER_THROUGH_WALLS = builder
                 .comment("If true, sound visualizations will render through walls (disables depth testing)")

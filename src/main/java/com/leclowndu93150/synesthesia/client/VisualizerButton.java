@@ -1,6 +1,6 @@
-package com.leclowndu93150.extreme_sound_visualizer.client;
+package com.leclowndu93150.synesthesia.client;
 
-import com.leclowndu93150.extreme_sound_visualizer.ExtremeSoundVisualizer;
+import com.leclowndu93150.synesthesia.Synesthesia;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.gui.components.Button;
 import net.minecraft.network.chat.Component;
@@ -9,7 +9,7 @@ import net.minecraft.resources.ResourceLocation;
 public class VisualizerButton extends Button {
 
     private static final ResourceLocation TEXTURE = ResourceLocation.fromNamespaceAndPath(
-            ExtremeSoundVisualizer.MODID, "textures/gui/visualizer_button.png"
+            Synesthesia.MODID, "textures/gui/visualizer_button.png"
     );
 
     private static final int TEXTURE_WIDTH = 23;
@@ -29,9 +29,9 @@ public class VisualizerButton extends Button {
 
     public Component getTooltipText() {
         if (VisualizerState.isEnabled()) {
-            return Component.translatable("extremesoundvisualizer.button.visualizer.enabled");
+            return Component.translatable("synesthesia.button.visualizer.enabled");
         } else {
-            return Component.translatable("extremesoundvisualizer.button.visualizer.disabled");
+            return Component.translatable("synesthesia.button.visualizer.disabled");
         }
     }
 }
