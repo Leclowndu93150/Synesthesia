@@ -7,6 +7,7 @@ import net.minecraft.client.multiplayer.ClientLevel;
 import net.minecraft.client.resources.sounds.SoundInstance;
 import net.minecraft.client.sounds.SoundEngine;
 import net.minecraft.core.BlockPos;
+import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.AABB;
@@ -41,7 +42,7 @@ public abstract class SoundEngineMixin {
             return;
         }
 
-        if (sound.getSource() == net.minecraft.sounds.SoundSource.PLAYERS) {
+        if (sound.getSource() == SoundSource.PLAYERS) {
             return;
         }
 

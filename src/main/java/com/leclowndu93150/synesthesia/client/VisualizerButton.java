@@ -8,7 +8,7 @@ import net.minecraft.resources.ResourceLocation;
 
 public class VisualizerButton extends Button {
 
-    private static final ResourceLocation TEXTURE = ResourceLocation.fromNamespaceAndPath(
+    private static final ResourceLocation TEXTURE = new ResourceLocation(
             Synesthesia.MODID, "textures/gui/visualizer_button.png"
     );
 

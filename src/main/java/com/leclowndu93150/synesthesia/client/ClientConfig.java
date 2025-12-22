@@ -1,14 +1,15 @@
 package com.leclowndu93150.synesthesia.client;
 
-import net.neoforged.neoforge.common.ModConfigSpec;
+
+import net.minecraftforge.common.ForgeConfigSpec;
 
 public class ClientConfig {
 
-    public static final ModConfigSpec SPEC;
-    public static final ModConfigSpec.BooleanValue RENDER_THROUGH_WALLS;
+    public static final ForgeConfigSpec SPEC;
+    public static final ForgeConfigSpec.BooleanValue RENDER_THROUGH_WALLS;
 
     static {
-        ModConfigSpec.Builder builder = new ModConfigSpec.Builder();
+        ForgeConfigSpec.Builder builder = new ForgeConfigSpec.Builder();
 
         builder.comment("Synesthesia: Sound Visualizer Client Configuration");
 

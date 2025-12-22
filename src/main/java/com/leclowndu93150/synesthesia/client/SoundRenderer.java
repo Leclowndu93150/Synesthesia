@@ -6,12 +6,13 @@ import com.mojang.blaze3d.vertex.*;
 import net.minecraft.client.Camera;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.Font;
+import net.minecraft.client.gui.Font.DisplayMode;
 import net.minecraft.client.renderer.GameRenderer;
 import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.phys.Vec3;
-import net.neoforged.bus.api.SubscribeEvent;
-import net.neoforged.neoforge.client.event.RenderLevelStageEvent;
+import net.minecraftforge.client.event.RenderLevelStageEvent;
+import net.minecraftforge.eventbus.api.SubscribeEvent;
 import org.joml.Matrix4f;
 
 import java.util.ArrayList;
@@ -144,50 +145,46 @@ public class SoundRenderer {
         Matrix4f mat = poseStack.last().pose();
 
         RenderSystem.setShader(GameRenderer::getPositionColorShader);
-        BufferBuilder buf = Tesselator.getInstance().begin(VertexFormat.Mode.QUADS, DefaultVertexFormat.POSITION_COLOR);
-
-        int ri = (int) (r * 255);
-        int gi = (int) (g * 255);
-        int bi = (int) (b * 255);
+        BufferBuilder buf = Tesselator.getInstance().getBuilder();
+        buf.begin(VertexFormat.Mode.QUADS, DefaultVertexFormat.POSITION_COLOR);
 
         // Top face
-        buf.addVertex(mat, (float) minX, (float) maxY, (float) minZ).setColor(ri, gi, bi, a);
-        buf.addVertex(mat, (float) minX, (float) maxY, (float) maxZ).setColor(ri, gi, bi, a);
-        buf.addVertex(mat, (float) maxX, (float) maxY, (float) maxZ).setColor(ri, gi, bi, a);
-        buf.addVertex(mat, (float) maxX, (float) maxY, (float) minZ).setColor(ri, gi, bi, a);
+        buf.vertex(mat, (float) minX, (float) maxY, (float) minZ).color(r, g, b, a).endVertex();
+        buf.vertex(mat, (float) minX, (float) maxY, (float) maxZ).color(r, g, b, a).endVertex();
+        buf.vertex(mat, (float) maxX, (float) maxY, (float) maxZ).color(r, g, b, a).endVertex();
+        buf.vertex(mat, (float) maxX, (float) maxY, (float) minZ).color(r, g, b, a).endVertex();
 
         // Front face
-        buf.addVertex(mat, (float) minX, (float) maxY, (float) minZ).setColor(ri, gi, bi, a);
-        buf.addVertex(mat, (float) maxX, (float) maxY, (float) minZ).setColor(ri, gi, bi, a);
-        buf.addVertex(mat, (float) maxX, (float) minY, (float) minZ).setColor(ri, gi, bi, a);
-        buf.addVertex(mat, (float) minX, (float) minY, (float) minZ).setColor(ri, gi, bi, a);
+        buf.vertex(mat, (float) minX, (float) maxY, (float) minZ).color(r, g, b, a).endVertex();
+        buf.vertex(mat, (float) maxX, (float) maxY, (float) minZ).color(r, g, b, a).endVertex();
+        buf.vertex(mat, (float) maxX, (float) minY, (float) minZ).color(r, g, b, a).endVertex();
+        buf.vertex(mat, (float) minX, (float) minY, (float) minZ).color(r, g, b, a).endVertex();
 
         // Back face
-        buf.addVertex(mat, (float) maxX, (float) maxY, (float) maxZ).setColor(ri, gi, bi, a);
-        buf.addVertex(mat, (float) minX, (float) maxY, (float) maxZ).setColor(ri, gi, bi, a);
-        buf.addVertex(mat, (float) minX, (float) minY, (float) maxZ).setColor(ri, gi, bi, a);
-        buf.addVertex(mat, (float) maxX, (float) minY, (float) maxZ).setColor(ri, gi, bi, a);
+        buf.vertex(mat, (float) maxX, (float) maxY, (float) maxZ).color(r, g, b, a).endVertex();
+        buf.vertex(mat, (float) minX, (float) maxY, (float) maxZ).color(r, g, b, a).endVertex();
+        buf.vertex(mat, (float) minX, (float) minY, (float) maxZ).color(r, g, b, a).endVertex();
+        buf.vertex(mat, (float) maxX, (float) minY, (float) maxZ).color(r, g, b, a).endVertex();
 
         // Left face
-        buf.addVertex(mat, (float) minX, (float) maxY, (float) maxZ).setColor(ri, gi, bi, a);
-        buf.addVertex(mat, (float) minX, (float) maxY, (float) minZ).setColor(ri, gi, bi, a);
-        buf.addVertex(mat, (float) minX, (float) minY, (float) minZ).setColor(ri, gi, bi, a);
-        buf.addVertex(mat, (float) minX, (float) minY, (float) maxZ).setColor(ri, gi, bi, a);
+        buf.vertex(mat, (float) minX, (float) maxY, (float) maxZ).color(r, g, b, a).endVertex();
+        buf.vertex(mat, (float) minX, (float) maxY, (float) minZ).color(r, g, b, a).endVertex();
+        buf.vertex(mat, (float) minX, (float) minY, (float) minZ).color(r, g, b, a).endVertex();
+        buf.vertex(mat, (float) minX, (float) minY, (float) maxZ).color(r, g, b, a).endVertex();
 
         // Right face
-        buf.addVertex(mat, (float) maxX, (float) minY, (float) maxZ).setColor(ri, gi, bi, a);
-        buf.addVertex(mat, (float) maxX, (float) minY, (float) minZ).setColor(ri, gi, bi, a);
-        buf.addVertex(mat, (float) maxX, (float) maxY, (float) minZ).setColor(ri, gi, bi, a);
-        buf.addVertex(mat, (float) maxX, (float) maxY, (float) maxZ).setColor(ri, gi, bi, a);
+        buf.vertex(mat, (float) maxX, (float) minY, (float) maxZ).color(r, g, b, a).endVertex();
+        buf.vertex(mat, (float) maxX, (float) minY, (float) minZ).color(r, g, b, a).endVertex();
+        buf.vertex(mat, (float) maxX, (float) maxY, (float) minZ).color(r, g, b, a).endVertex();
+        buf.vertex(mat, (float) maxX, (float) maxY, (float) maxZ).color(r, g, b, a).endVertex();
 
         // Bottom face
-        buf.addVertex(mat, (float) maxX, (float) minY, (float) minZ).setColor(ri, gi, bi, a);
-        buf.addVertex(mat, (float) maxX, (float) minY, (float) maxZ).setColor(ri, gi, bi, a);
-        buf.addVertex(mat, (float) minX, (float) minY, (float) maxZ).setColor(ri, gi, bi, a);
-        buf.addVertex(mat, (float) minX, (float) minY, (float) minZ).setColor(ri, gi, bi, a);
+        buf.vertex(mat, (float) maxX, (float) minY, (float) minZ).color(r, g, b, a).endVertex();
+        buf.vertex(mat, (float) maxX, (float) minY, (float) maxZ).color(r, g, b, a).endVertex();
+        buf.vertex(mat, (float) minX, (float) minY, (float) maxZ).color(r, g, b, a).endVertex();
+        buf.vertex(mat, (float) minX, (float) minY, (float) minZ).color(r, g, b, a).endVertex();
 
-        BufferUploader.drawWithShader(buf.buildOrThrow());
-
+        BufferUploader.drawWithShader(buf.end());
         poseStack.popPose();
     }
 
@@ -205,26 +202,17 @@ public class SoundRenderer {
         Vec3 labelPos = new Vec3(soundPos.x, labelY, soundPos.z).subtract(cameraPos);
 
         poseStack.translate(labelPos.x, labelPos.y, labelPos.z);
-        poseStack.mulPose(camera.rotation());
-        poseStack.scale(0.025f, -0.025f, 0.025f);
+        poseStack.mulPose(Minecraft.getInstance().getEntityRenderDispatcher().cameraOrientation());
+        poseStack.scale(-0.025f, -0.025f, 0.025f);
+
+        Matrix4f matrix4f = poseStack.last().pose();
+        float textX = -font.width(labelText) / 2.0f;
 
         int alpha = (int) (opacity * 255);
         int textColor = (alpha << 24) | 0xFFFFFF;
 
-        float textWidth = font.width(labelText);
-
-        font.drawInBatch(
-                labelText,
-                -textWidth / 2.0f,
-                0f,
-                textColor,
-                false,
-                poseStack.last().pose(),
-                bufferSource,
-                Font.DisplayMode.SEE_THROUGH,
-                0,
-                0xF000F0
-        );
+        font.drawInBatch(labelText, textX, 0f, textColor, false, matrix4f, bufferSource, DisplayMode.SEE_THROUGH, 0, 0xF000F0);
+        font.drawInBatch(labelText, textX, 0f, textColor, false, matrix4f, bufferSource, DisplayMode.NORMAL, 0, 0xF000F0);
 
         poseStack.popPose();
     }
