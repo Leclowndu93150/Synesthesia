@@ -1,4 +1,4 @@
-package com.leclowndu93150.extreme_sound_visualizer.client;
+package com.leclowndu93150.synesthesia.client;
 
 public class VisualizerState {
     private static boolean enabled = false;

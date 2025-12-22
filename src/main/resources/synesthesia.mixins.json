@@ -1,7 +1,7 @@
 {
   "required": true,
   "minVersion": "0.8",
-  "package": "com.leclowndu93150.extreme_sound_visualizer.mixin",
+  "package": "com.leclowndu93150.synesthesia.mixin",
   "compatibilityLevel": "JAVA_21",
   "mixins": [
   ],

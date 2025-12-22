@@ -1,4 +1,4 @@
-package com.leclowndu93150.extreme_sound_visualizer.client;
+package com.leclowndu93150.synesthesia.client;
 
 import com.mojang.blaze3d.platform.InputConstants;
 import net.minecraft.client.KeyMapping;
@@ -12,10 +12,10 @@ import org.lwjgl.glfw.GLFW;
 public class KeyBindings {
 
     public static final KeyMapping TOGGLE_VISUALIZER = new KeyMapping(
-            "key.extremesoundvisualizer.toggle",
+            "key.synesthesia.toggle",
             InputConstants.Type.KEYSYM,
             GLFW.GLFW_KEY_V,
-            "key.categories.extremesoundvisualizer"
+            "key.categories.synesthesia"
     );
 
     public static void registerKeyBindings(RegisterKeyMappingsEvent event) {
@@ -34,9 +34,9 @@ public class KeyBindings {
 
             Component message;
             if (VisualizerState.isEnabled()) {
-                message = Component.translatable("message.extremesoundvisualizer.enabled");
+                message = Component.translatable("message.synesthesia.enabled");
             } else {
-                message = Component.translatable("message.extremesoundvisualizer.disabled");
+                message = Component.translatable("message.synesthesia.disabled");
             }
 
             mc.player.displayClientMessage(message, true);
