@@ -14,7 +14,7 @@ public class KeyBindings {
     public static final KeyMapping TOGGLE_VISUALIZER = new KeyMapping(
             "key.synesthesia.toggle",
             InputConstants.Type.KEYSYM,
-            GLFW.GLFW_KEY_V,
+            GLFW.GLFW_KEY_F25,
             "key.categories.synesthesia"
     );
 
