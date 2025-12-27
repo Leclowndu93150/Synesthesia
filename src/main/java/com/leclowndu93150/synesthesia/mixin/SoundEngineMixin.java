@@ -27,7 +27,7 @@ public abstract class SoundEngineMixin {
     @Unique
     private static final double SYN_MAX_SOUND_DISTANCE = 16.0;
 
-    @Inject(method = "play", at = @At("HEAD"))
+    @Inject(method = "play(Lnet/minecraft/client/resources/sounds/SoundInstance;)V", at = @At("HEAD"))
     private void syn_onSoundPlay(SoundInstance sound, CallbackInfo ci) {
         if (!VisualizerState.isEnabled()) {
             return;
