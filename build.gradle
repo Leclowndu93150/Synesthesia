@@ -90,7 +90,7 @@ sourceSets.main.resources { srcDir 'src/generated/resources' }
 
 dependencies {
     annotationProcessor 'org.spongepowered:mixin:0.8.5:processor'
-    modImplementation "curse.maven:extreme-sound-muffler-363363:6526566"
+    modImplementation("curse.maven:extreme-sound-muffler-363363:7469697")
 }
 
 mixin {

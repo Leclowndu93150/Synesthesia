@@ -2,6 +2,7 @@
   "required": true,
   "minVersion": "0.8",
   "package": "com.leclowndu93150.synesthesia.mixin",
+  "refmap": "synesthesia.refmap.json",
   "compatibilityLevel": "JAVA_17",
   "mixins": [
   ],
