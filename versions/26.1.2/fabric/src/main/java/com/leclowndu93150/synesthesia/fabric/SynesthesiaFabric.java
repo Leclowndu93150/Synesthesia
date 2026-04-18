@@ -7,9 +7,10 @@ import com.leclowndu93150.synesthesia.client.VisualizerState;
 import com.mojang.blaze3d.platform.InputConstants;
 import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.fabric.api.client.event.lifecycle.v1.ClientTickEvents;
-import net.fabricmc.fabric.api.client.keybinding.v1.KeyBindingHelper;
-import net.fabricmc.fabric.api.client.rendering.v1.WorldRenderEvents;
+import net.fabricmc.fabric.api.client.keymapping.v1.KeyMappingHelper;
+import net.fabricmc.fabric.api.client.rendering.v1.level.LevelRenderEvents;
 import net.minecraft.client.KeyMapping;
+import net.minecraft.client.Minecraft;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.Identifier;
 import org.lwjgl.glfw.GLFW;
@@ -32,7 +33,7 @@ public class SynesthesiaFabric implements ClientModInitializer {
         ClientConfig.setRenderThroughWallsSupplier(FabricClientConfig::renderThroughWalls);
         FabricClientConfig.load();
 
-        KeyBindingHelper.registerKeyBinding(TOGGLE_VISUALIZER);
+        KeyMappingHelper.registerKeyMapping(TOGGLE_VISUALIZER);
 
         ClientTickEvents.END_CLIENT_TICK.register(client -> {
             if (client.player == null) {
@@ -47,8 +48,8 @@ public class SynesthesiaFabric implements ClientModInitializer {
             }
         });
 
-        WorldRenderEvents.AFTER_ENTITIES.register(context -> {
-            SoundRenderer.render(context.matrixStack(), context.camera());
+        LevelRenderEvents.AFTER_TRANSLUCENT_FEATURES.register(context -> {
+            SoundRenderer.render(context.poseStack(), Minecraft.getInstance().gameRenderer.getMainCamera());
         });
     }
 }
