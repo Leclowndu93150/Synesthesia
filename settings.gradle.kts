@@ -17,6 +17,9 @@ plugins {
 rootProject.name = "synesthesia"
 
 prism {
+    version("1.18.2") {
+        forge()
+    }
     version("1.20.1") {
         common()
         fabric()

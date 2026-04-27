@@ -26,6 +26,19 @@ prism {
         }
     }
 
+    version("1.18.2") {
+        forge {
+            loaderVersion = "40.3.10"
+            loaderVersionRange = "[40,)"
+            dependencies {
+                modImplementation("curse.maven:extreme-sound-muffler-363363:4033047")
+            }
+            publishingDependencies {
+                requires("extreme-sound-muffler")
+            }
+        }
+    }
+
     version("1.20.1") {
         common {
             modCompileOnly("curse.maven:extreme-sound-muffler-363363:7469697")
